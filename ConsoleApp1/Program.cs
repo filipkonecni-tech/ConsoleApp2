@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace poligon_3_9
+namespace ConsoleApp1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            // Milos Pusic
+            // Filip Konecni
             // Tacka prva = new Tacka();
             // Console.WriteLine(prva.d());
             Tacka A = new Tacka(1, 2);

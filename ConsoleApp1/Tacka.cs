@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace poligon_3_9
+namespace ConsoleApp1
 {
     internal class Tacka
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace poligon_3_9
+namespace ConsoleApp1
 {
     internal class Vektor
     {
@@ -19,5 +19,18 @@ namespace poligon_3_9
             Tacka Nova = new Tacka(kraj.x - pocetak.x, kraj.y - pocetak.y);
             return Nova;
         }
+        public double SP(Vektor a, Vektor b)
+        {
+            Tacka aC = a.Centriraj();
+            Tacka bC = b.Centriraj();
+            return aC.x * bC.x + aC.y * bC.y;
+        }
+        public double VP(Vektor a, Vektor b)
+        {
+            Tacka aC = a.Centriraj();
+            Tacka bC = b.Centriraj();
+            return aC.x * bC.y - bC.x * aC.y;
+        }
+
     }
 }
