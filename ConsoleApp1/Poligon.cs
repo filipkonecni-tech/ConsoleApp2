@@ -60,8 +60,9 @@ namespace ConsoleApp1
                 int i = 0;
                 while ((line = sr.ReadLine()) != null)
                 {
+                    p.teme[i] = new Tacka();
                     p.teme[i].x = (double)line[22];
-                    p.teme[i].y = (double)line[27];
+                    p.teme[i].y = (double)line[26];
                     i++;
                 }
                 return p;
