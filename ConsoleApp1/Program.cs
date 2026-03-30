@@ -18,7 +18,7 @@ namespace ConsoleApp1
             Poligon p = new Poligon();
             /*p = Poligon.unos();*/
             p = Poligon.ucitaj();
-            Console.WriteLine(p.teme[0].x);
+            Console.WriteLine(Poligon.Povrsina(p));
         }
     }
 }

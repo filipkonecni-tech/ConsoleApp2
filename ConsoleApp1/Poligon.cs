@@ -19,6 +19,39 @@ namespace ConsoleApp1
             br_temena = n;
             teme = new Tacka[n];
         }
+        public static double Povrsina(Poligon p)
+        {
+            double povrsina = 0;
+            for(int i = 0; i < p.teme.Length; i++)
+            {
+                if(i != p.teme.Length - 1) {
+                     povrsina = povrsina + (p.teme[i].x * p.teme[i+1].y -p.teme[i+1].x * p.teme[i].y);
+                }
+                else
+                {
+                    povrsina = povrsina + (p.teme[i].x * p.teme[0].y -p.teme[0].x * p.teme[i].y);
+                }
+            }
+            return (Math.Abs(povrsina) / 2);
+        }
+        public static bool Prost(Poligon p)
+        {
+            Vektor[] v = new Vektor[p.teme.Length];
+            for(int i = 0; i< v.Length; i++)
+            {
+                if(i != v.Length - 1) {
+                     v[i].pocetak = p.teme[i+1].x - p.teme[i].x;
+                     v[i].kraj = p.teme[i+1].y - p.teme[i].y;
+                    v[i].Vrednosti();
+                }
+                else
+                {
+                    v[i].pocetak = p.teme[0].x - p.teme[i].x;
+                    v[i].kraj = p.teme[0].y - p.teme[i].y;
+                    v[i].Vrednosti();
+                }
+            }
+        }
         public static Poligon unos()
         {
             Console.WriteLine("Koliko temena?");
@@ -37,32 +70,37 @@ namespace ConsoleApp1
         }
         public void stampa()
         {
-            using (StreamWriter st = new StreamWriter("../../text.txt"))
+            Console.WriteLine("Poligon ima {0} temena", br_temena);
+            for (int i = 0; i < br_temena; i++)
             {
-                for (int i = 0; i < teme.Length; i++)
-                {
-                    string sentence = "Koordinate tacke " + (i + 1) + " su " + teme[i].x + " i " + teme[i].y;
-                    st.WriteLine(sentence);
-                }
+                Console.WriteLine("Koordinate {0}. tacke su x={1} i y={2}", i + 1, teme[i].x, teme[i].x);
             }
         }
         public void snimi()
         {
             StreamWriter izlaz = new StreamWriter("text.txt");
+            izlaz.WriteLine(br_temena);
+            for (int i = 0; i < br_temena; i++)
+            {
+                izlaz.WriteLine(teme[i].x);
+                izlaz.WriteLine(teme[i].y);
+            }
+            izlaz.Close();
         }
         public static Poligon ucitaj()
         {
             using (StreamReader sr = new StreamReader("../../text.txt"))
             {
                 int lineCount = File.ReadAllLines("../../text.txt").Length;
-                Poligon p = new Poligon(lineCount);
+                Poligon p = new Poligon(lineCount / 2);
                 string line;
                 int i = 0;
                 while ((line = sr.ReadLine()) != null)
                 {
                     p.teme[i] = new Tacka();
-                    p.teme[i].x = (double)line[22];
-                    p.teme[i].y = (double)line[26];
+                    p.teme[i].x = Convert.ToDouble(line);
+                    line=sr.ReadLine();
+                    p.teme[i].y = Convert.ToDouble(line);
                     i++;
                 }
                 return p;
