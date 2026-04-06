@@ -24,13 +24,20 @@ namespace ConsoleApp1
             double povrsina = 0;
             for(int i = 0; i < p.teme.Length; i++)
             {
-                povrsina = povrsina + (p.teme[i].x * p.teme[(i+1)%(p.teme.Length()-1)].y -p.teme[(i+1)%(p.teme.Length()-1)].x * p.teme[i].y);
+                povrsina = povrsina + (p.teme[i].x * p.teme[(i+1)%(p.teme.Length-1)].y -p.teme[(i+1)%(p.teme.Length-1)].x * p.teme[i].y);
             }
             return (Math.Abs(povrsina) / 2);
         }
         public bool konveksan()
         {
-
+            int brojac = 0;
+            for (int i = 0; i < br_temena; i++)
+            {
+                Vektor prvi = new Vektor(teme[i], teme[(i + 1) % br_temena]);
+                Vektor drugi = new Vektor(teme[(i+1)%br_temena], teme[(i + 2) % br_temena]);
+                if (Vektor.VP(prvi, drugi) > 0) brojac++;
+            }
+            if ((brojac == br_temena) || (brojac == 0)) return true;
             return false;
         }
         public bool prost()
