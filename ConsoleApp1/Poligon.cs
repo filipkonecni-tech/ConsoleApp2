@@ -140,5 +140,10 @@ namespace ConsoleApp1
             obim += a.duzina();
             return obim;
         }
+        public bool tacka_u(Tacka t)
+        {
+
+            return false;
+        }
     }
 }
