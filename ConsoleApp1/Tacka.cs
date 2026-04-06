@@ -22,5 +22,9 @@ namespace ConsoleApp1
         {
             return Math.Sqrt(x * x + y * y);
         }
+        public static bool jednake(Tacka A, Tacka B)
+        {
+            return (A.x == B.x) && (A.y == B.y);
+        }
     }
 }
