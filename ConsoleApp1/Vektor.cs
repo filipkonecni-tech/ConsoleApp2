@@ -44,6 +44,19 @@ namespace ConsoleApp1
             Tacka bC = b.Centriraj();
             return aC.x * bC.y - bC.x * aC.y;
         }
+        public double duzina()
+        {
+            Tacka A = this.Centriraj();
+            double duzina = A.d();
+            return duzina;
+        }
+        public static bool seku_se(Vektor a, Vektor b)
+        {
+            int a_b = Ravan.SIS(a, b.pocetak, b.kraj);
+            int b_a = Ravan.SIS(b, a.pocetak, a.kraj);
+            if ((a_b!=0) && (b_a!=0) ) return true;
+            return false;
+        }
 
     }
 }

@@ -34,23 +34,38 @@ namespace ConsoleApp1
             }
             return (Math.Abs(povrsina) / 2);
         }
-        public static bool Prost(Poligon p)
+        public bool prost()
         {
-            Vektor[] v = new Vektor[p.teme.Length];
-            for(int i = 0; i< v.Length; i++)
+            for (int i = 0; i < br_temena-1; i++)
             {
-                if(i != v.Length - 1) {
-                     v[i].pocetak = p.teme[i+1].x - p.teme[i].x;
-                     v[i].kraj = p.teme[i+1].y - p.teme[i].y;
-                    v[i].Vrednosti();
-                }
-                else
+                for (int j = i+1; j < br_temena; j++)
                 {
-                    v[i].pocetak = p.teme[0].x - p.teme[i].x;
-                    v[i].kraj = p.teme[0].y - p.teme[i].y;
-                    v[i].Vrednosti();
+                    if (Tacka.jednake(teme[i], teme[j]))
+                    {
+                        return false;
+                    }
                 }
             }
+            Vektor[] stranica = new Vektor[br_temena];
+            for (int i = 0; i < br_temena-1; i++)
+            {
+                stranica[i] = new Vektor(teme[i], teme[i + 1]);
+            }
+            stranica[br_temena - 1] = new Vektor(teme[br_temena - 1], teme[0]);
+            for (int i = 0; i < br_temena; i++)
+            {
+                int kraj;
+                if (i == 0) kraj = br_temena - 1;
+                else kraj = br_temena;
+                for (int j = i + 2; j < kraj; j++)
+                {
+                    if (Vektor.seku_se(stranica[i], stranica[j]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
         public static Poligon unos()
         {
@@ -105,6 +120,19 @@ namespace ConsoleApp1
                 }
                 return p;
             }
+        }
+        public double obim()
+        {
+            Vektor a;
+            double obim = 0;
+            for (int i = 0; i < br_temena-1; i++)
+            {
+                a = new Vektor(teme[i], teme[i + 1]);
+                obim += a.duzina();
+            }
+            a = new Vektor(teme[br_temena-1], teme[0]);
+            obim += a.duzina();
+            return obim;
         }
     }
 }
